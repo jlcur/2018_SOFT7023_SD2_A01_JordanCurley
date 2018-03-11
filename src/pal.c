@@ -74,7 +74,8 @@ char ask_for_command() {
     char res = ' ';
 
     printf("\nNEW MOVEMENT: Enter one of the commands below: ");
-    printf("\nValid commands: a     d     w     x ");
+    printf("\nValid commands: a     d     w     x \n");
+    scanf(" %c" ,res);
     return res;
 }
 
@@ -90,9 +91,12 @@ void process_movement(int a[6], int** p_p, int* p_nm, char c){
 //--------------------------------------------------
 void print_status(int a[6], int* p, int nm) {
 
+    char c[6] = {' ', ' ', ' ', ' ', ' ', ' '};
+    c[*p] = '^';
     printf("----- Game Status -----");
     printf("\nNumber = { %d %d %d %d %d %d }" ,a[0], a[1], a[2], a[3], a[4], a[5]);
-    printf("\nNumber of moves = ");
+    printf("\n           %c %c %c %c %c %c  ", c[0], c[1], c[2], c[3], c[4], c[5]);
+    printf("\nNumber of moves = %d" ,nm);
     printf("\n-----------------------");
 
 }
@@ -102,16 +106,23 @@ void print_status(int a[6], int* p, int nm) {
 //--------------------------------------------------
 void user_game_palindrome(int pal_num) {
 
-    int* p;
-    int nm;
+
+
+    int nm = 0;
 
     // Declare and initialise the array
     int a[6];
     initialise_array(a, pal_num);
 
+    int startElem = gen_num(0,6); // Generate the random starting position
+    int* p = &a[startElem]; // Assign the pointer to the starting element
+    
+
     print_status(a, p, nm);
 
-    ask_for_command();
+    do {
 
+
+    } while (is_pal(a) != True);
 }
 
